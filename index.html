@@ -1,74 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WORLD HUB - Digital Products AI Sales</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WORLD HUB V2</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{background:#000;color:#fff;font-family:Arial}
-.h{background:linear-gradient(90deg,#6a00ff,#ff006a);padding:15px;text-align:center}
-.rule{margin:10px;background:#fff;color:#000;padding:10px;border-radius:10px;text-align:center;font-weight:bold;font-size:12px}
-.create{background:#fff;color:#000;margin:10px;padding:15px;border-radius:12px}
-.create input{width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:8px}
-.btn{width:100%;padding:14px;background:#000;color:#fff;border:none;border-radius:10px;font-weight:bold}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px}
-.card{background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:12px;text-align:center}
-.ai{margin:10px;background:#111;border:1px solid #333;padding:10px;border-radius:10px;font-size:12px}
-.log{background:#000;color:#0f0;font-family:monospace;font-size:11px;height:120px;overflow:auto;padding:8px;border-radius:8px}
+body{font-family:Arial;background:#080808;color:white;padding:10px;max-width:500px;margin:0 auto}
+.header{background:linear-gradient(135deg,#a020f0,#ff1493,#ff6a00);padding:25px;border-radius:20px;text-align:center}
+.badge{background:white;color:black;padding:8px;border-radius:20px;font-weight:bold;font-size:13px;display:inline-block;margin-top:8px}
+.trust{display:flex;gap:6px;justify-content:center;margin:10px 0;flex-wrap:wrap}
+.trust span{background:#1a1a1a;border:1px solid #333;padding:6px 10px;border-radius:20px;font-size:11px}
+.product{background:#151515;border:2px solid #ffcc00;border-radius:20px;padding:20px;margin:12px 0}
+.preview{background:white;color:black;padding:15px;border-radius:12px;margin:12px 0;display:flex;gap:12px}
+.price-box{text-align:center;background:#111;border:1px solid #333;border-radius:15px;padding:15px;margin:15px 0}
+.price{font-size:38px;color:#ffcc00;font-weight:900}
+.pay-btn{width:100%;padding:16px;border:none;border-radius:12px;font-weight:900;font-size:16px;margin:8px 0;display:block;text-align:center;text-decoration:none}
+.btn-pay{background:linear-gradient(90deg,red,orange);color:white}
+.btn-wa{background:#25D366;color:white}
+.airtel-box{background:#000;border:2px dashed red;padding:15px;border-radius:12px;text-align:center;display:none}
+.airtel-num{font-size:30px;font-weight:900;color:#ffcc00;background:#111;padding:10px;border-radius:8px;margin:10px 0}
+.chapters{background:#1e1e1e;border-radius:12px;padding:15px;margin:12px 0}
+.chapters li{list-style:none;padding:7px 0;border-bottom:1px solid #2a2a2a;font-size:13px}
+.review{background:#1a1a1a;border-radius:12px;padding:12px;margin:8px 0;font-size:13px;border-left:3px solid #0f0}
+.guarantee{background:linear-gradient(135deg,#003d00,#00a000);padding:12px;border-radius:10px;text-align:center;margin:12px 0;font-size:13px;font-weight:bold}
 </style>
 </head>
 <body>
-<div class="h"><h2>🌍 WORLD HUB</h2><small>AI Sells Your PDF / Design / Project</small></div>
-<div class="rule">YOU Upload PDF/Design → AI Finds Buyer → Buyer Pays AI → AI Lets Him GRAB File</div>
-
-<div class="ai"><b>🤖 AI SCRIPT</b> - Searching people who love digital products <div class="log" id="log">> AI Ready to sell PDFs & Designs...<br></div></div>
-
-<div class="create">
-<h4>📤 YOU UPLOAD DIGITAL PRODUCT</h4>
-<input id="name" placeholder="Product Name: e.g. My Logo Design Pack">
-<input id="price" placeholder="Price UGX: e.g. 20000">
-<input id="file" type="file" accept=".pdf,.zip,.png,.jpg">
-<small>Select your PDF / Design / Zip</small>
-<button class="btn" onclick="upload()">🚀 GIVE FILE TO AI TO SELL</button>
+<div class="header">
+<h1>🌍 WORLD HUB</h1>
+<p>Uganda's First AI-Powered Digital Store</p>
+<div class="badge">🔴 LIVE: 127 Viewing • Airtel Money ACTIVE</div>
 </div>
-
-<div class="grid" id="grid"></div>
-
-<script>
-let files={};
-function log(t){let l=document.getElementById('log');l.innerHTML+=`> ${t}<br>`;l.scrollTop=9999;}
-function upload(){
-let name=document.getElementById('name').value,price=document.getElementById('price').value,file=document.getElementById('file').files[0];
-if(!name||!price||!file)return alert('Enter name, price, and choose file');
-let id=Date.now();
-let reader=new FileReader();
-reader.onload=function(e){
-files[id]=e.target.result;
-document.getElementById('grid').innerHTML+=`<div class="card" id="c${id}">
-<div style="font-size:30px">📄</div><b>${name}</b><br><small>${file.name}</small><br>
-<span style="color:#ff6">${price} UGX</span><br>
-<div style="margin:8px 0;font-size:11px;color:#aaa">🔒 Locked - Pay to Grab</div>
-<button style="width:100%;padding:10px;background:#fff;color:#000;border:none;border-radius:20px;font-weight:bold" onclick="payAndGrab(${id},'${name}','${price}')">❤️ Love it? Pay AI & GRAB PDF</button>
-<div id="d${id}"></div>
-</div>`;
-log(`AI received digital file: ${name} (${file.name})`);
-log(`AI searching customers who LOVE ${name}...`);
-setTimeout(()=>log(`AI found 89 people who LOVE this design!`),2000);
-};
-reader.readAsDataURL(file);
-}
-
-function payAndGrab(id,name,price){
-log(`Customer LOVES ${name} - Paying AI ${price} UGX...`);
-document.getElementById(`c${id}`).innerHTML+=`<div style="color:#0f0;margin-top:8px;font-size:12px">Processing payment via AI...</div>`;
-setTimeout(()=>{
-log(`✅ Payment for ${name} confirmed by AI!`);
-log(`📥 AI unlocking file for customer...`);
-let link=`<a href="${files[id]}" download="${name}" style="display:block;margin-top:10px;padding:10px;background:#0f0;color:#000;border-radius:20px;text-decoration:none;font-weight:bold">📥 GRAB / DOWNLOAD NOW</a>`;
-document.getElementById(`d${id}`).innerHTML=link+`<div style="color:#0f0;font-size:11px;margin-top:5px">✅ Paid - File unlocked by AI!</div>`;
-alert(`🔥 Customer paid ${price}! AI unlocked file: ${name}`);
-},2000);
-}
-</script>
+<div class="trust"><span>🔒 Secure Pay</span><span>⚡ Instant</span><span>🇺🇬 Uganda</span><span>⭐ 4.9/5 (89 Reviews)</span></div>
+<div class="product">
+<h2 style="text-align:center">📚 How to Start Business in Uganda 2026 With 0 UGX</h2>
+<p style="text-align:center;color:#aaa;font-size:13px">AI Blueprint Used by 300+ Kampala Youths</p>
+<div class="preview">
+<div style="width:65px;height:85px;background:linear-gradient(135deg,#a020f0,#ff1493);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:30px">📖</div>
+<div><div style="font-weight:bold;font-size:14px;color:black">E-BOOK PREVIEW</div><div style="font-size:12px;color:#555">• 47 Pages • PDF • Eng & Lug<br>• Lifetime Updates<br><span style="color:green;font-weight:bold">✔ Includes URA, Airtel Business setup</span></div></div>
+</div>
+<div class="chapters">
+<h3 style="color:#ffcc00;margin-bottom:10px">🔥 WHAT'S INSIDE (Worth 150k):</h3>
+<li>✅ Find Hot Business in 24Hrs (No Capital)</li>
+<li>✅ Get Customers Using Free AI + WhatsApp</li>
+<li>✅ URA + URSB Registration for 0 UGX (Secret)</li>
+<li>✅ Airtel Money & MoMo Business Account Setup</li>
+<li>✅ 5 Businesses You Can Start Tomorrow in Kampala</li>
+<li>✅ BONUS: 100 Supplier Contacts + My WhatsApp Support</li>
+</div>
+<div class="price-box">
+<div style="text-decoration:line-through;color:#888">Was 45,000 UGX</div>
+<div class="price">15,000 UGX</div>
+<div style="font-size:12px;color:orange">⚡ Launch Offer - Ends Tonight 11:59 PM</div>
+</div>
+<div class="guarantee">💯 7-Day Money Back - If not useful, I refund 100% on Airtel Money!</div>
+<button class="pay-btn btn-pay" onclick="document.getElementById('paybox').style.display='block'">🔒 PAY WITH AIRTEL MONEY - 15,000 UGX</button>
+<div id="paybox" class="airtel-box">
+<h3>PAY HERE - Airtel Money</h3>
+<p style="font-size:12px;color:#aaa">Dial *185# or MyAirtel App</p>
+<div class="airtel-num">0740930892</div>
+<p>Name: <b>Olivie Elias</b> | Amount: <b>15,000</b></p>
+<p style="background:#ffcc00;color:black;padding:8px;border-radius:6px;font-size:12px;font-weight:bold;margin:10px 0">1. Send 15k to 0740930892<br>2. Screenshot proof<br>3. Click WhatsApp below</p>
+<a class="pay-btn btn-wa" href="https://wa.me/256740930892?text=Hello%20WORLD%20HUB!%20I%20paid%2015000%20UGX%20to%200740930892%20for%20E-book.%20Proof%20attached%20-%20send%20PDF">💬 I HAVE PAID - SEND PDF ON WHATSAPP</a>
+</div>
+<a class="pay-btn" style="background:#222;border:1px solid #25D366;color:white" href="https://wa.me/256740930892?text=Hi%20WORLD%20HUB,%20question%20about%20E-book" target="_blank">💬 Chat Owner Before Buying</a>
+</div>
+<div class="review">⭐⭐⭐⭐⭐ <b>Brian K. - Wandegeya</b><br>"I started Chapati business with this. Now 40k daily!" - 2 days ago</div>
+<div class="review">⭐⭐⭐⭐⭐ <b>Sarah N. - Mukono</b><br>"URA part saved me 120k. Thank you!" - 5 days ago</div>
+<div style="text-align:center;color:#666;font-size:11px;padding:20px">Owner: 0740930892 Airtel Money • WORLD HUB - Kampala</div>
 </body>
 </html>
